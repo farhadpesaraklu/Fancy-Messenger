@@ -7,7 +7,7 @@ export default function ContactList({
   updatedMessages,
 }) {
   const [data,setData]= useState(jsonData)
-  const [readMessages, setReadMessages] = useState([]);
+  const [readMessages] = useState([]);
 
   useEffect(() => {
     const index = jsonData.findIndex(
@@ -21,7 +21,7 @@ export default function ContactList({
       jsonData.unshift(selectedChat);
       setData([...jsonData]);
     }
-  }, [updatedMessages.length]);
+  }, [updatedMessages.length,selectedChat]);
 
 
   return (
