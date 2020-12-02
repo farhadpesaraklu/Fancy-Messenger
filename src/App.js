@@ -30,7 +30,6 @@ function App() {
     setShowChatPage(true);
     setSelectedChat(object);
     setUpdatedMessages([]);
-    // setShowUnreadMessage(false);
   }
   function onCloseBtnClick() {
     setShowChatPage(false);

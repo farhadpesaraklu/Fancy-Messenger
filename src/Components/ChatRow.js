@@ -53,8 +53,6 @@ const timeContainerStyle = {
 export default function ChatRow({ item, onClick, readMessages }) {
   const lastMessage = item.messages.length - 1;
 
-  
-
   return (
     <div
       className="chatRow"
