@@ -52,11 +52,11 @@ const messagesStyle = {
   // paddingBottom:10
 };
 
-export default function ChatPage({ chatData, onClick,onSendMessage }) {
-  const [keyword, setKeyword] = useState("");
+export default function ChatPage({ chatData, onClick,onSendMessage, chatInput,handleDraft }) {
 
   function handleChange(e) {
-    setKeyword(e.target.value);
+    
+    handleDraft(e.target.value)
   }
 
   function handleSendClick() {
@@ -64,11 +64,11 @@ export default function ChatPage({ chatData, onClick,onSendMessage }) {
       id: Math.random().toString(),
       self: true,
       time: "thursday",
-      text: keyword,
+      text: chatInput,
     };
     chatData.messages.push(newMessage);
     onSendMessage(chatData)
-    setKeyword("");
+    handleDraft("");
   }
 
   const chatListRef = useRef(null);
@@ -103,7 +103,7 @@ export default function ChatPage({ chatData, onClick,onSendMessage }) {
         <div ref={chatListRef} />
       </div>
       <InputMessage
-          keyword={keyword}
+          keyword={chatInput}
           onChange={handleChange}
           onClick={handleSendClick}
         />

@@ -25,6 +25,7 @@ const chatHeadStyle = {
 function App() {
   const [showChatPage, setShowChatPage] = useState(false);
   const [selectedChat, setSelectedChat] = useState({ messages: [] });
+  const [chatInput, setChatInput] = useState("")
 
   function onRowClick(object) {
     setShowChatPage(true);
@@ -33,6 +34,10 @@ function App() {
   }
   function onCloseBtnClick() {
     setShowChatPage(false);
+  }
+
+  function handleDraft(keyword){
+    setChatInput(keyword)
   }
 
   const [showSearchInput, setShowSearchInput] = useState(false);
@@ -72,6 +77,8 @@ function App() {
             onClick={onRowClick}
             selectedChat={selectedChat}
             updatedMessages={updatedMessages}
+            chatInput={chatInput}
+            handleDraft={handleDraft}
           />
         </div>
         <div style={{ borderBottom: "1px solid #ccc", width: "65%" }}>
@@ -80,6 +87,8 @@ function App() {
               chatData={selectedChat}
               onClick={onCloseBtnClick}
               onSendMessage={handleOnSend}
+              chatInput={chatInput}
+              handleDraft={handleDraft}
             />
           ) : (
             <div style={{ width: "100%" }}>

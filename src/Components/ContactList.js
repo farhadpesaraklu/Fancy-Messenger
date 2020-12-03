@@ -5,9 +5,12 @@ export default function ContactList({
   onClick,
   selectedChat,
   updatedMessages,
+  chatInput,
+  handleDraft
 }) {
   const [data,setData]= useState(jsonData)
   const [readMessages] = useState([]);
+  const [drafts, setDrafts] = useState({});
 
   useEffect(() => {
     const index = jsonData.findIndex(
@@ -24,6 +27,19 @@ export default function ContactList({
   }, [updatedMessages.length,selectedChat]);
 
 
+  function fillDraft(item) {
+    if(selectedChat.id === item.id) {
+      return;
+    }
+  
+    let newInputValue = drafts[item.id] ? drafts[item.id] : "";
+    let tempDrafts = drafts;
+    tempDrafts[selectedChat.id] = chatInput;
+    setDrafts(tempDrafts);
+    handleDraft(newInputValue)
+  }
+
+
   return (
     <div>
       {
@@ -32,6 +48,7 @@ export default function ContactList({
             <ChatRow
               key={item.id}
               onClick={() => {
+                fillDraft(item)
                 onClick(item);
                 readMessages.push(item);
               }}
